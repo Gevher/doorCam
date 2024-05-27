@@ -46,6 +46,7 @@ SPI_HandleTypeDef hspi1;
 osThreadId defaultTaskHandle;
 /* USER CODE BEGIN PV */
 void vSPITestTask(void);
+QueueHandle_t xButtonQueue;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -54,20 +55,30 @@ static void MX_GPIO_Init(void);
 static void MX_SPI1_Init(void);
 void StartDefaultTask(void const * argument);
 
+
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-void vSPITestTask(){
-	uint8_t testData = 1;
+void vUButtonPressed(void){
 
-	if(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == 1) {
-		HAL_SPI_Transmit(&hspi1, testData, 1, 1000);
-		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET);
+	if(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) == GPIO_PIN_SET) {
+		xQueueSendToBack(xButtonQueue, 1, 500);
 	}
-	else{
+
+}
+
+void vSPITestTask(){
+	int iQueueFlag = 0;
+
+	if(iQueueFlag == 1 && HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_9) == 0){
+		//HAL_SPI_Transmit(&hspi1, testData, 1, 1000);
+		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET);
+		HAL_Delay(200);
+	}
+	else if(iQueueFlag == 1 && HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_9) == 0){
 		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_RESET);
 	}
 
@@ -82,7 +93,8 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-	xTaskCreate(vSPITestTask, "SPI_Test", 16, NULL, 1, NULL);
+	xTaskCreate(&vSPITestTask, "SPI_Test", 16, NULL, 1, NULL);
+	xTaskCreate(&vUButtonPressed, "User button pressed", 16, NULL, 1, NULL);
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -122,6 +134,7 @@ int main(void)
 
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
+  xButtonQueue = xQueueCreate(10, sizeof(int));
   /* USER CODE END RTOS_QUEUES */
 
   /* Create the thread(s) */

@@ -64,8 +64,8 @@ all: main-build
 main-build: doorCam.elf secondary-outputs
 
 # Tool invocations
-doorCam.elf doorCam.map: $(OBJS) $(USER_OBJS) C:\Users\tomas\Documents\projects\doorCam\STM32F051R8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "doorCam.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0 -T"C:\Users\tomas\Documents\projects\doorCam\STM32F051R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="doorCam.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+doorCam.elf doorCam.map: $(OBJS) $(USER_OBJS) C:\Users\tomas\Documents\Repos\doorCam\STM32F051R8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "doorCam.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0 -T"C:\Users\tomas\Documents\Repos\doorCam\STM32F051R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="doorCam.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
