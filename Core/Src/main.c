@@ -45,7 +45,8 @@ SPI_HandleTypeDef hspi1;
 
 osThreadId defaultTaskHandle;
 /* USER CODE BEGIN PV */
-void vSPITestTask(void);
+void vSPITestTask(void* pvParameters);
+void vUButtonPressed(void* pvParameters);
 QueueHandle_t xButtonQueue;
 /* USER CODE END PV */
 
@@ -62,26 +63,36 @@ void StartDefaultTask(void const * argument);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-void vUButtonPressed(void){
+void vUButtonPressed(void* pvParameters){
+	TickType_t xDelay250ms = pdMS_TO_TICKS( 250 );
+	uint8_t iQueueValue = 1;
 
-	if(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) == GPIO_PIN_SET) {
-		xQueueSendToBack(xButtonQueue, 1, 500);
+	while(1){
+		if(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0)) {
+			xQueueSendToBack(xButtonQueue, &iQueueValue, 0);
+			vTaskDelay(xDelay250ms);
+		}
 	}
-
 }
 
-void vSPITestTask(){
-	int iQueueFlag = 0;
+void vSPITestTask(void* pvParameters){
+	uint8_t iQueueValue;
+	TickType_t xDelay250ms = pdMS_TO_TICKS( 250 );
+	BaseType_t xStatus;
 
-	if(iQueueFlag == 1 && HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_9) == 0){
-		//HAL_SPI_Transmit(&hspi1, testData, 1, 1000);
-		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET);
-		HAL_Delay(200);
-	}
-	else if(iQueueFlag == 1 && HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_9) == 0){
-		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_RESET);
-	}
 
+	while(1){
+		xStatus = xQueueReceive(xButtonQueue, &iQueueValue, 100);
+		if(xStatus == pdPASS)
+		{
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET);
+			HAL_SPI_Transmit(&hspi1, &iQueueValue, 2, 1000);
+			HAL_Delay(100);
+		    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_RESET);
+		}
+
+		vTaskDelay(xDelay250ms);
+	}
 }
 /* USER CODE END 0 */
 
@@ -93,8 +104,7 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-	xTaskCreate(&vSPITestTask, "SPI_Test", 16, NULL, 1, NULL);
-	xTaskCreate(&vUButtonPressed, "User button pressed", 16, NULL, 1, NULL);
+
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -134,7 +144,7 @@ int main(void)
 
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
-  xButtonQueue = xQueueCreate(10, sizeof(int));
+  xButtonQueue = xQueueCreate(10, sizeof(uint8_t));
   /* USER CODE END RTOS_QUEUES */
 
   /* Create the thread(s) */
@@ -143,6 +153,11 @@ int main(void)
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
+  if(xButtonQueue != NULL){
+	  xTaskCreate(vSPITestTask, "SPI_Test", 100, NULL, 1, NULL);
+	  xTaskCreate(vUButtonPressed, "User button pressed", 100, NULL, 1, NULL);
+  }
+
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
 

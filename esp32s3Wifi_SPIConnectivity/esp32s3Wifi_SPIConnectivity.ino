@@ -5,7 +5,7 @@
 
 void SPI_Init();
 uint8_t SPI_Recive();
-uint8_t SPI_Send();
+
 
 void setup() {
   // put your setup code here, to run once:
@@ -42,8 +42,4 @@ uint8_t SPI_Recive() {
   idataReceived = SPI.transfer(0x00); // Send dummy byte to receive data
   digitalWrite(SS_PIN, HIGH); // Disable slave
   return idataReceived;
-}
-
-uint8_t SPI_Send(){
-
 }
