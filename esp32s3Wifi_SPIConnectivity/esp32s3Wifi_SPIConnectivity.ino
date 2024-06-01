@@ -1,7 +1,7 @@
 #include <WiFi.h>
 #include <SPI.h>
 
-#define SS_PIN 5
+#define SS_PIN 9
 
 void SPI_Init();
 uint8_t SPI_Recive();
@@ -21,7 +21,7 @@ void setup() {
 
 void loop() {
   delay(1000);
-  if(SPI_Recive){
+  if(SPI_Recive()){
     digitalWrite(21, HIGH);
   }
   else{

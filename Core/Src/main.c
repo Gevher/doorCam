@@ -66,6 +66,7 @@ void StartDefaultTask(void const * argument);
 void vUButtonPressed(void* pvParameters){
 	TickType_t xDelay250ms = pdMS_TO_TICKS( 250 );
 	uint8_t iQueueValue = 1;
+	TickType_t xTime = xTaskGetTickCount();
 
 	while(1){
 		if(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0)) {
