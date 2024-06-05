@@ -1,5 +1,7 @@
 /*
- * GPIOInit.h
+ * GPIOHandler.h
+ *
+ *	Pins definitions and needed resources for GPIOHandler.c with handles initialization and hadling GPIO in doorCam project
  *
  *  Created on: Jun 2, 2024
  *      Author: tomas
@@ -35,5 +37,7 @@ void vErroLEDChangeState(void);
 void vTrigChangeState(void);
 bool bUserButtonGetState(void);
 bool bEchoGetState(void);
+bool bTrigGetState(void);
+
 
 #endif /* INC_CUSTOM_GPIOHANDLER_H_ */

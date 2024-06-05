@@ -1,5 +1,8 @@
 /*
- * GPIOInit.h
+ * GPIOHandler.h
+ 	 *
+ *
+ *	GPIO handling and initialization code for doorCam project
  *
  *  Created on: Jun 2, 2024
  *      Author: tomas
@@ -8,7 +11,7 @@
 #include <stdbool.h>
 
 
-//GPIO initialization method
+//GPIO initialization method, no changes made, as auto-generated
 void MX_GPIO_Init(void)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
@@ -46,7 +49,7 @@ void MX_GPIO_Init(void)
 /* USER CODE END MX_GPIO_Init_2 */
 }
 
-/*Changes LED2 state*/
+/*Changes build-in  LED state*/
 void vLEDChangeState(void){
 	if(HAL_GPIO_ReadPin(LED_PIN_GPIO_Port, LED_PIN)){
 		HAL_GPIO_WritePin(LED_PIN_GPIO_Port, LED_PIN, GPIO_STATE_RESET);
@@ -56,7 +59,7 @@ void vLEDChangeState(void){
 	}
 }
 
-/*Changes LED2 state*/
+/*Changes build-in LED2 state*/
 void vErroLEDChangeState(void){
 		if(HAL_GPIO_ReadPin(LED2_PIN_GPIO_Port, LED2_PIN)){
 			HAL_GPIO_WritePin(LED2_PIN_GPIO_Port, LED2_PIN, GPIO_STATE_RESET);
@@ -66,7 +69,7 @@ void vErroLEDChangeState(void){
 		}
 }
 
-/*Changes TRIG pin state*/
+/*Changes proximity sensor TRIG pin state*/
 void vTrigChangeState(void){
 		if(HAL_GPIO_ReadPin(TRIG_PIN_GPIO_Port, TRIG_PIN)){
 				HAL_GPIO_WritePin(TRIG_PIN_GPIO_Port, TRIG_PIN, GPIO_STATE_RESET);
@@ -76,7 +79,7 @@ void vTrigChangeState(void){
 		}
 }
 
-/*Gets user button state*/
+/*Gets build-in user button state*/
 bool bUserButtonGetState(void){
 	if(HAL_GPIO_ReadPin(USER_BTN_GPIO_Port, USER_BTN))
 		return true;
@@ -84,9 +87,17 @@ bool bUserButtonGetState(void){
 		return false;
 }
 
-/*Gets echo pin state*/
+/*Gets proximity sensor echo pin state*/
 bool bEchoGetState(void){
 	if(HAL_GPIO_ReadPin(ECHO_PIN_GPIO_Port, ECHO_PIN))
+		return true;
+	else
+		return false;
+}
+
+/*Grts proximity sensor trigger pin state*/
+bool bEchoGetState(void){
+	if(HAL_GPIO_ReadPin(TRIG_PIN_GPIO_Port, TRIG_PIN))
 		return true;
 	else
 		return false;

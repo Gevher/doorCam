@@ -45,8 +45,7 @@
 
 osThreadId defaultTaskHandle;
 /* USER CODE BEGIN PV */
-void vSPITestTask(void* pvParameters);
-void VUButtonPressedTask(void* pvParameters);
+
 QueueHandle_t xSPITransferQueue;
 /* USER CODE END PV */
 
@@ -60,25 +59,6 @@ void StartDefaultTask(void const * argument);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
-//Task that checks if USER button was pressed, mainly for debug purposes
-void VUButtonPressedTask(void* pvParameters){
-	TickType_t xDelay250ms = pdMS_TO_TICKS( 250 );
-	uint8_t iQueueValue = 1;
-
-
-	while(1){
-		if(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0)) {
-			xQueueSendToBack(xSPITransferQueue, &iQueueValue, 0);
-			vTaskDelay(xDelay250ms);
-		}
-	}
-}
-
-//SPI communication test task
-
-
-//Task responsible for handling poximity sensor
 
 /* USER CODE END 0 */
 
@@ -151,7 +131,7 @@ int main(void)
   /* USER CODE END RTOS_THREADS */
 
   /* Start scheduler */
-  osKernelStart();
+  doorCamProcesing();
 
   /* We should never get here as control is now taken by the scheduler */
 

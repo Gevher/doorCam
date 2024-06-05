@@ -12,9 +12,24 @@
 #include "SPIHandler.h"
 #include "proxSensHandler.h"
 
+QueueHandle_t ProxTrigQueue;
+
 
 void doorCamInit(void){
 	MX_GPIO_Init();
 	SystemClock_Config();
 	MX_SPI1_Init();
 }
+
+
+void doorCamProcesing(void){
+
+
+
+	 osKernelStart();
+
+
+}
+
+void vSPITestTask(void* pvParameters) {}
+void vPoroximitySensorMeasureTask(void* pvParameters) {}
