@@ -1,0 +1,18 @@
+/*
+ * proxSensHandler.h
+ *
+ *  Created on: Jun 4, 2024
+ *      Author: tomas
+ */
+
+#ifndef INC_CUSTOM_PROXSENSHANDLER_H_
+#define INC_CUSTOM_PROXSENSHANDLER_H_
+
+enum PROXIMITY_SENOR_STATE{
+	SENSOR_READY = 0,
+	SENSOR_MEASURE_IN_PROGRESS = 1,
+	SENSOR_MEASURE_FINNISHED = 2,
+	SENSOR_ERROR = 3
+};
+
+#endif /* INC_CUSTOM_PROXSENSHANDLER_H_ */
