@@ -6,20 +6,15 @@
  *  Created on: Jun 2, 2024
  *      Author: tomas
  */
-#include <stdbool.h>
+
+#include <Custom/SPIHandler.h>
 
 
 
-//Default SPI handle used by STM32
-SPI_HandleTypeDef hspi1;
-
-
-
-static void MX_SPI1_Init(void);
 
 
 //SPI initialization method
-static void MX_SPI1_Init(void)
+void MX_SPI1_Init(void)
 {
 
   /* USER CODE BEGIN SPI1_Init 0 */
@@ -55,13 +50,18 @@ static void MX_SPI1_Init(void)
 }
 
 
-/*SPI transmition test, returns true if HAL_OK(0x00U), returns false if HAL_ERROR    = 0x01U,
+/*SPI transition test, returns true if HAL_OK(0x00U), returns false if HAL_ERROR    = 0x01U,
 																		HAL_BUSY     = 0x02U,
 																		HAL_TIMEOUT  = 0x03U,*/
 bool bSPITransmisionTest(void* pvParameters){
-	bool bTransmitionState;
 
-	bTransmitionState = HAL_SPI_Transmit(&hspi1, &iQueueValue, SIZE_OF_PACKAGE, TIMEOUT_TIME);
+	//Transition test
+	bool bTransmitionState;
+	//A variable holding data just for test
+	uint8_t iDummyData = 1;
+
+
+	bTransmitionState = HAL_SPI_Transmit(&hspi1, &iDummyData, SIZE_OF_PACKAGE, TIMEOUT_TIME);
 
 	if(!bTransmitionState){
 		return true;

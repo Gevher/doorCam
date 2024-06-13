@@ -8,10 +8,14 @@
  */
 
 
+
 #ifndef INC_CUSTOM_GPIOHANDLER_H_
 #define INC_CUSTOM_GPIOHANDLER_H_
 
-#include <stm32f0xx_hal_spi.h>
+
+#include <stdbool.h>
+#include <stm32f0xx_hal.h>
+
 
 //Custom defined pins
 //Output pins:
@@ -30,7 +34,7 @@
 #define TRIG_PIN_GPIO_Port GPIOC
 #define USER_BTN_GPIO_Port GPIOA
 
-//included methods
+
 void MX_GPIO_Init(void);
 void vLEDChangeState(void);
 void vErroLEDChangeState(void);
@@ -38,6 +42,7 @@ void vTrigChangeState(void);
 bool bUserButtonGetState(void);
 bool bEchoGetState(void);
 bool bTrigGetState(void);
+
 
 
 #endif /* INC_CUSTOM_GPIOHANDLER_H_ */

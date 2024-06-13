@@ -43,14 +43,13 @@
 /* Private variables ---------------------------------------------------------*/
 
 
-osThreadId defaultTaskHandle;
+
 /* USER CODE BEGIN PV */
 
-QueueHandle_t xSPITransferQueue;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
-void StartDefaultTask(void const * argument);
+
 
 
 /* USER CODE BEGIN PFP */
@@ -112,20 +111,14 @@ int main(void)
 
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
-  xSPITransferQueue = xQueueCreate(10, sizeof(uint8_t));
+
   /* USER CODE END RTOS_QUEUES */
 
   /* Create the thread(s) */
   /* definition and creation of defaultTask */
-  osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 128);
-  defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
+
 
   /* USER CODE BEGIN RTOS_THREADS */
-  if(xSPITransferQueue != NULL){
-	  xTaskCreate(vSPITestTask, "SPI_Test", 100, NULL, 1, NULL);
-	  xTaskCreate(VUButtonPressedTask, "User button pressed", 100, NULL, 1, NULL);
-	  xTaskCreate(xProxSensorTask, "Poximity sensor handler", 100, NULL, 1, NULL);
-  }
 
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
@@ -164,16 +157,6 @@ int main(void)
   * @retval None
   */
 /* USER CODE END Header_StartDefaultTask */
-void StartDefaultTask(void const * argument)
-{
-  /* USER CODE BEGIN 5 */
-  /* Infinite loop */
-  for(;;)
-  {
-    osDelay(1);
-  }
-  /* USER CODE END 5 */
-}
 
 /**
   * @brief  Period elapsed callback in non blocking mode

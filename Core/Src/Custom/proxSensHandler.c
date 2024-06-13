@@ -8,8 +8,9 @@
  *  Created on: Jun 1, 2024
  *      Author: tomas
  */
-#include <Custom/GPIOHandler.h>
-
+#include "Custom/GPIOHandler.h"
+#include "Custom/proxSensHandler.h"
+#include <stdint.h>
 
 /*Method responsible for checking and switching proximity sensor state using its trigger input and echo output*/
 uint8_t vProxSensMeasure(void){
@@ -44,7 +45,7 @@ uint8_t vProxSensMeasure(void){
 
 	if(iMachineState == SENSOR_ERROR){
 		iMachineState = SENSOR_READY;
-		LED2ChangeState();
+		vErroLEDChangeState();
 		return SENSOR_ERROR;
 	}
 

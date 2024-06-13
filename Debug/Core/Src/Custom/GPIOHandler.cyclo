@@ -1,0 +1,6 @@
+../Core/Src/Custom/GPIOHandler.c:15:6:MX_GPIO_Init	1
+../Core/Src/Custom/GPIOHandler.c:54:6:vLEDChangeState	3
+../Core/Src/Custom/GPIOHandler.c:64:6:vErroLEDChangeState	3
+../Core/Src/Custom/GPIOHandler.c:74:6:vTrigChangeState	3
+../Core/Src/Custom/GPIOHandler.c:84:6:bUserButtonGetState	2
+../Core/Src/Custom/GPIOHandler.c:92:6:bEchoGetState	2

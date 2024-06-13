@@ -1,6 +1,6 @@
 #include <Custom/SystemClockConfig.h>
 
-void SystemClock_Config(void);
+
 
 
 /*

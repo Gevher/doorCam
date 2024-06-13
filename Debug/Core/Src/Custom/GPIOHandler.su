@@ -1,0 +1,6 @@
+../Core/Src/Custom/GPIOHandler.c:15:6:MX_GPIO_Init	48	static
+../Core/Src/Custom/GPIOHandler.c:54:6:vLEDChangeState	8	static
+../Core/Src/Custom/GPIOHandler.c:64:6:vErroLEDChangeState	8	static
+../Core/Src/Custom/GPIOHandler.c:74:6:vTrigChangeState	8	static
+../Core/Src/Custom/GPIOHandler.c:84:6:bUserButtonGetState	8	static
+../Core/Src/Custom/GPIOHandler.c:92:6:bEchoGetState	8	static

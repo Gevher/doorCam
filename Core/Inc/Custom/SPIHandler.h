@@ -4,11 +4,19 @@
  *  Created on: Jun 2, 2024
  *      Author: tomas
  */
-#include <stm32f0xx_hal_spi.h>
+
+#include <stdbool.h>
+#include <stm32f0xx_hal.h>
 
 
 #ifndef INC_CUSTOM_SPIHANDLER_H_
 #define INC_CUSTOM_SPIHANDLER_H_
+
+//Default SPI handle used by STM32
+SPI_HandleTypeDef hspi1;
+
+
+void MX_SPI1_Init(void);
 
 //Default timeout time
 #define TIMEOUT_TIME 1000

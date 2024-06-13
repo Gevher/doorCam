@@ -1,7 +1,7 @@
 /*
  * proxSensHandler.h
  *
- * Definitions and resources neededn for  handling and getting state of proximity sensor in doorCam project
+ * Definitions and resources needed for  handling and getting state of proximity sensor in doorCam project
  *
  *  Created on: Jun 4, 2024
  *      Author: tomas
@@ -9,6 +9,8 @@
 
 #ifndef INC_CUSTOM_PROXSENSHANDLER_H_
 #define INC_CUSTOM_PROXSENSHANDLER_H_
+
+
 
 enum PROXIMITY_SENOR_STATE{
 	SENSOR_READY = 0,
