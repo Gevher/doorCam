@@ -9,8 +9,8 @@
 
 #include <Custom/SPIHandler.h>
 
-
-
+//Default handle for SPI1
+SPI_HandleTypeDef hspi1;
 
 
 //SPI initialization method

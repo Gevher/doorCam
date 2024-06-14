@@ -19,8 +19,11 @@
 
 //Custom defined pins
 //Output pins:
+//LD3
 #define LED_PIN GPIO_PIN_9
+//LD4
 #define LED2_PIN GPIO_PIN_8
+
 #define ECHO_PIN GPIO_PIN_7
 
 //Input pins:

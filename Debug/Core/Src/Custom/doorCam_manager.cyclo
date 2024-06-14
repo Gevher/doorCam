@@ -1,0 +1,5 @@
+../Core/Src/Custom/doorCam_manager.c:16:6:doorCamInit	1
+../Core/Src/Custom/doorCam_manager.c:23:6:doorCamProcesing	2
+../Core/Src/Custom/doorCam_manager.c:58:6:vSPITestTask	1
+../Core/Src/Custom/doorCam_manager.c:64:6:vPoroxSensMeasureTask	1
+../Core/Src/Custom/doorCam_manager.c:68:6:StartDefaultTask	1

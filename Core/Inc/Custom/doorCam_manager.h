@@ -21,8 +21,6 @@
 
 
 
-QueueHandle_t qProxTrigQueue;
-BaseType_t defaultTaskHandle;
 
 void doorCamProcesing(void);
 void doorCamInit(void);

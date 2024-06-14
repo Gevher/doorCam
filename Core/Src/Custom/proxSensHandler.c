@@ -20,6 +20,7 @@ uint8_t vProxSensMeasure(void){
 		if(!bTrigGetState()){
 			vTrigChangeState();
 			iMachineState = SENSOR_STARTING;
+			return iMachineState;
 		}
 		else{
 			iMachineState = SENSOR_ERROR;
