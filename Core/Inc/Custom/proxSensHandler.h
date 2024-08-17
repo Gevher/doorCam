@@ -10,6 +10,13 @@
 #ifndef INC_CUSTOM_PROXSENSHANDLER_H_
 #define INC_CUSTOM_PROXSENSHANDLER_H_
 
+uint8_t vProxSensMeasure(void);
+bool bIsObstacleInRange(uint8_t);
+
+
+
+/* Range in which obstacle should trigger the sensor in cm*/
+#define TRIGGER_DISTANCE 100
 
 
 enum PROXIMITY_SENOR_STATE{

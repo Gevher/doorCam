@@ -1,5 +1,5 @@
-../Core/Src/Custom/doorCam_manager.c:16:6:doorCamInit	8	static
-../Core/Src/Custom/doorCam_manager.c:23:6:doorCamProcesing	56	static
-../Core/Src/Custom/doorCam_manager.c:58:6:vSPITestTask	16	static
-../Core/Src/Custom/doorCam_manager.c:64:6:vPoroxSensMeasureTask	16	static
-../Core/Src/Custom/doorCam_manager.c:68:6:StartDefaultTask	16	static
+../Core/Src/Custom/doorCam_manager.c:35:6:vDoorCamInit	8	static
+../Core/Src/Custom/doorCam_manager.c:42:6:vDoorCamProciessing	56	static
+../Core/Src/Custom/doorCam_manager.c:80:6:vSPITestTask	16	static
+../Core/Src/Custom/doorCam_manager.c:115:6:vProxSensMeasureTask	24	static
+../Core/Src/Custom/doorCam_manager.c:143:6:StartDefaultTask	16	static

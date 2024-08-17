@@ -1,1 +1,2 @@
-../Core/Src/Custom/proxSensHandler.c:16:9:vProxSensMeasure	8	static
+../Core/Src/Custom/proxSensHandler.c:23:9:vProxSensMeasure	24	static
+../Core/Src/Custom/proxSensHandler.c:73:6:bIsObstacleInRange	24	static

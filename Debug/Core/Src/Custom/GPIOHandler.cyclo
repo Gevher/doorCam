@@ -1,6 +1,11 @@
-../Core/Src/Custom/GPIOHandler.c:15:6:MX_GPIO_Init	1
-../Core/Src/Custom/GPIOHandler.c:54:6:vLEDChangeState	3
-../Core/Src/Custom/GPIOHandler.c:64:6:vErroLEDChangeState	3
-../Core/Src/Custom/GPIOHandler.c:74:6:vTrigChangeState	3
-../Core/Src/Custom/GPIOHandler.c:84:6:bUserButtonGetState	2
-../Core/Src/Custom/GPIOHandler.c:92:6:bEchoGetState	2
+../Core/Src/Custom/GPIOHandler.c:25:6:MX_GPIO_Init	1
+../Core/Src/Custom/GPIOHandler.c:65:6:vLEDOn	2
+../Core/Src/Custom/GPIOHandler.c:71:6:vLEDOff	2
+../Core/Src/Custom/GPIOHandler.c:79:6:vErrorLEDOn	2
+../Core/Src/Custom/GPIOHandler.c:86:6:vErrorLEDOff	2
+../Core/Src/Custom/GPIOHandler.c:93:6:vTrigChangeState	3
+../Core/Src/Custom/GPIOHandler.c:103:6:bUserButtonGetState	2
+../Core/Src/Custom/GPIOHandler.c:111:6:bEchoGetState	2
+../Core/Src/Custom/GPIOHandler.c:119:6:bTrigGetState	1
+../Core/Src/Custom/GPIOHandler.c:124:6:bErrorLEDGetState	2
+../Core/Src/Custom/GPIOHandler.c:134:6:bLEDGetState	2

@@ -85,8 +85,8 @@ int main(void)
 
   /* USER CODE BEGIN SysInit */
 
-
-  doorCamInit();
+  /* Initialization of system config and all needed peripherals*/
+  vDoorCamInit();
 
   /* USER CODE END SysInit */
 
@@ -124,7 +124,9 @@ int main(void)
   /* USER CODE END RTOS_THREADS */
 
   /* Start scheduler */
-  doorCamProcesing();
+
+  /* Starting scheduler and creating all needed tasks and RTOS components*/
+  vDoorCamProciessing();
 
   /* We should never get here as control is now taken by the scheduler */
 

@@ -8,9 +8,15 @@
  */
 
 #include <Custom/SPIHandler.h>
+#include <stdbool.h>
 
 //Default handle for SPI1
 SPI_HandleTypeDef hspi1;
+
+
+bool bSPITransmisionTest(void);
+void MX_SPI1_Init(void);
+
 
 
 //SPI initialization method
@@ -50,10 +56,11 @@ void MX_SPI1_Init(void)
 }
 
 
+
 /*SPI transition test, returns true if HAL_OK(0x00U), returns false if HAL_ERROR    = 0x01U,
 																		HAL_BUSY     = 0x02U,
 																		HAL_TIMEOUT  = 0x03U,*/
-bool bSPITransmisionTest(void* pvParameters){
+bool bSPITransmisionTest(void){
 
 	//Transition test
 	bool bTransmitionState;
@@ -61,7 +68,7 @@ bool bSPITransmisionTest(void* pvParameters){
 	uint8_t iDummyData = 1;
 
 
-	bTransmitionState = HAL_SPI_Transmit(&hspi1, &iDummyData, SIZE_OF_PACKAGE, TIMEOUT_TIME);
+	bTransmitionState = HAL_SPI_Transmit(&hspi1, &iDummyData, SIZE_OF_PACKAGE, TIMEOUT);
 
 	if(!bTransmitionState){
 		return true;

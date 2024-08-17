@@ -11,13 +11,27 @@
 #include "Custom/GPIOHandler.h"
 #include "Custom/proxSensHandler.h"
 #include <stdint.h>
+#include <stdbool.h>
 
-/*Method responsible for checking and switching proximity sensor state using its trigger input and echo output*/
+
+uint8_t vProxSensMeasure(void);
+bool bIsObstacleInRange(uint8_t);
+
+
+
+/*Function responsible for checking and switching proximity sensor state using its trigger input and echo output*/
 uint8_t vProxSensMeasure(void){
 	static uint8_t iMachineState;
+	bool bTrigState;
+
+	bTrigState = bTrigGetState();
+
+	if(!iMachineState){
+		iMachineState = SENSOR_READY;
+	}
 
 	if(iMachineState == SENSOR_READY){
-		if(!bTrigGetState()){
+		if(bTrigState){
 			vTrigChangeState();
 			iMachineState = SENSOR_STARTING;
 			return iMachineState;
@@ -29,6 +43,7 @@ uint8_t vProxSensMeasure(void){
 
 	if(iMachineState == SENSOR_STARTING && bEchoGetState() && bTrigGetState()){
 		vTrigChangeState();
+		//vLEDOn();
 		iMachineState = SENSOR_MEASURE_IN_PROGRESS;
 	}
 	else if (iMachineState == SENSOR_MEASURE_IN_PROGRESS ) {
@@ -46,7 +61,6 @@ uint8_t vProxSensMeasure(void){
 
 	if(iMachineState == SENSOR_ERROR){
 		iMachineState = SENSOR_READY;
-		vErroLEDChangeState();
 		return SENSOR_ERROR;
 	}
 
@@ -55,6 +69,18 @@ uint8_t vProxSensMeasure(void){
 
 }
 
+/*Function checking if there is an obstacle in set distance from sensor based on formula provided in HC-SR04 sensor datasheet*/
+bool bIsObstacleInRange(uint8_t iMsMeasureTime){
+	uint8_t iMeasuredDistance;
 
+	iMeasuredDistance = (iMsMeasureTime*1000)/58;  //Time is multiplicated by 1000 since formula requires nanoseconds, 58 is directly from the forumula 1ms ~ 17cm
 
+	if(iMeasuredDistance < TRIGGER_DISTANCE){
 
+		return true;
+	}
+	else{
+		//vLEDOff();
+		return false;
+	}
+}
