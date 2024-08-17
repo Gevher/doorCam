@@ -11,6 +11,16 @@
 
 
 
+void MX_GPIO_Init(void);
+void vLEDOn(void);
+void vLEDOff(void);
+void vErroLEDChangeState(void);
+void vTrigChangeState(void);
+bool bUserButtonGetState(void);
+bool bEchoGetState(void);
+bool bTrigGetState(void);
+
+
 //GPIO initialization method, no changes made, as auto-generated
 void MX_GPIO_Init(void)
 //included methods
@@ -30,43 +40,52 @@ void MX_GPIO_Init(void)
   /*Configure GPIO input pins using GPIOA : USER_BTN */
   GPIO_InitStruct.Pin = USER_BTN;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
   HAL_GPIO_Init(USER_BTN_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO output pins using GPIOC : ECHO_PIN, LED_PIN, LED2_PIN */
-  GPIO_InitStruct.Pin = ECHO_PIN|LED_PIN|LED2_PIN;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  /*Configure GPIO output pins using GPIOC : LED_PIN, LED2_PIN */
+  GPIO_InitStruct.Pin = LED_PIN|LED2_PIN;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP ;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(ECHO_PIN_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(LED_PIN_GPIO_Port , &GPIO_InitStruct);
 
   /*Configure GPIO input pins using GPIOC : TRIG_PIN */
-  GPIO_InitStruct.Pin = TRIG_PIN;
+  GPIO_InitStruct.Pin = TRIG_PIN|ECHO_PIN;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(TRIG_PIN_GPIO_Port, &GPIO_InitStruct);
+
 
 /* USER CODE BEGIN MX_GPIO_Init_2 */
 /* USER CODE END MX_GPIO_Init_2 */
 }
 
-/*Changes build-in  LED state*/
-void vLEDChangeState(void){
-	if(HAL_GPIO_ReadPin(LED_PIN_GPIO_Port, LED_PIN)){
-		HAL_GPIO_WritePin(LED_PIN_GPIO_Port, LED_PIN, GPIO_PIN_RESET);
-	}
-	else if(!HAL_GPIO_ReadPin(LED_PIN_GPIO_Port, LED_PIN)){
+/*Turns on build-in LED state*/
+void vLEDOn(void){
+	if(!HAL_GPIO_ReadPin(LED_PIN_GPIO_Port, LED_PIN)){
 		HAL_GPIO_WritePin(LED_PIN_GPIO_Port, LED_PIN, GPIO_PIN_SET);
 	}
 }
+/*Turns off build-in LED state*/
+void vLEDOff(void){
+	if(HAL_GPIO_ReadPin(LED_PIN_GPIO_Port, LED_PIN)){
+			HAL_GPIO_WritePin(LED_PIN_GPIO_Port, LED_PIN, GPIO_PIN_RESET);
+	}
+}
 
-/*Changes build-in LED2 state*/
-void vErroLEDChangeState(void){
+
+/*Turns on build-in LED state*/
+void vErrorLEDOn(void){
+		if(!HAL_GPIO_ReadPin(LED2_PIN_GPIO_Port, LED2_PIN)){
+			HAL_GPIO_WritePin(LED2_PIN_GPIO_Port, LED2_PIN, GPIO_PIN_SET);
+		}
+}
+
+/*Turns off build-in LED state*/
+void vErrorLEDOff(void){
 		if(HAL_GPIO_ReadPin(LED2_PIN_GPIO_Port, LED2_PIN)){
 			HAL_GPIO_WritePin(LED2_PIN_GPIO_Port, LED2_PIN, GPIO_PIN_RESET);
-		}
-		else if(!HAL_GPIO_ReadPin(LED2_PIN_GPIO_Port, LED2_PIN)){
-			HAL_GPIO_WritePin(LED2_PIN_GPIO_Port, LED2_PIN, GPIO_PIN_SET);
 		}
 }
 
@@ -96,3 +115,27 @@ bool bEchoGetState(void){
 		return false;
 }
 
+/*Gets proximity sensor trig pin state*/
+bool bTrigGetState(void){
+	return HAL_GPIO_ReadPin(TRIG_PIN_GPIO_Port, TRIG_PIN);
+}
+
+/*Gets LED2 pin state*/
+bool bErrorLEDGetState(void){
+	if(HAL_GPIO_ReadPin(USER_BTN_GPIO_Port, USER_BTN)){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+
+/*Gets LED pin state*/
+bool bLEDGetState(void){
+	if(HAL_GPIO_ReadPin(LED_PIN_GPIO_Port, LED_PIN)){
+		return true;
+	}
+	else{
+		return false;
+	}
+}

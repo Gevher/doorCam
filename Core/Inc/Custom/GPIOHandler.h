@@ -1,4 +1,4 @@
-/*
+ /*
  * GPIOHandler.h
  *
  *	Pins definitions and needed resources for GPIOHandler.c with handles initialization and hadling GPIO in doorCam project
@@ -16,6 +16,18 @@
 #include <stdbool.h>
 #include <stm32f0xx_hal.h>
 
+//Functions in source file:
+void MX_GPIO_Init(void);
+void vLEDOn(void);
+void vLEDOff(void);
+void vErrorLEDOn(void);
+void vErrorLEDOff(void);
+void vTrigChangeState(void);
+bool bUserButtonGetState(void);
+bool bEchoGetState(void);
+bool bTrigGetState(void);
+bool bLEDGetState(void);
+bool bErrorLEDGetState(void);
 
 //Custom defined pins
 //Output pins:
@@ -37,14 +49,6 @@
 #define TRIG_PIN_GPIO_Port GPIOC
 #define USER_BTN_GPIO_Port GPIOA
 
-
-void MX_GPIO_Init(void);
-void vLEDChangeState(void);
-void vErroLEDChangeState(void);
-void vTrigChangeState(void);
-bool bUserButtonGetState(void);
-bool bEchoGetState(void);
-bool bTrigGetState(void);
 
 
 
