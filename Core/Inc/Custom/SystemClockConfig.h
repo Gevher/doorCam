@@ -6,13 +6,11 @@
  */
 #include "stm32f0xx_hal.h"
 
-
 #ifndef INC_CUSTOM_SYSTEMCLOCKCONFIG_H_
 #define INC_CUSTOM_SYSTEMCLOCKCONFIG_H_
 
 /* Exported functions prototypes ---------------------------------------------*/
 void SystemClock_Config(void);
 void Error_Handler(void);
-
 
 #endif /* INC_CUSTOM_SYSTEMCLOCKCONFIG_H_ */
