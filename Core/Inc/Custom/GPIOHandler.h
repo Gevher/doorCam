@@ -1,4 +1,4 @@
- /*
+/*
  * GPIOHandler.h
  *
  *	Pins definitions and needed resources for GPIOHandler.c with handles initialization and hadling GPIO in doorCam project
@@ -7,11 +7,8 @@
  *      Author: tomas
  */
 
-
-
 #ifndef INC_CUSTOM_GPIOHANDLER_H_
 #define INC_CUSTOM_GPIOHANDLER_H_
-
 
 #include <stdbool.h>
 #include <stm32f0xx_hal.h>
@@ -48,8 +45,5 @@ bool bErrorLEDGetState(void);
 #define ECHO_PIN_GPIO_Port GPIOC
 #define TRIG_PIN_GPIO_Port GPIOC
 #define USER_BTN_GPIO_Port GPIOA
-
-
-
 
 #endif /* INC_CUSTOM_GPIOHANDLER_H_ */

@@ -13,10 +13,9 @@
 //Functions in source file:
 void vDoorCamProciessing(void);
 void vDoorCamInit(void);
-void vSPITestTask(void* pvParameters);
-void vProxSensMeasureTask(void* pvParameters);
-void StartDefaultTask(void* pvParameters);
-
+void vSPITestTask(void *pvParameters);
+void vProxSensMeasureTask(void *pvParameters);
+void StartDefaultTask(void *pvParameters);
 
 //Arbitrary value, when higher camera might record for longer after loosing signal from porximity sensor
 #define QUEUE_LENGHT 15
@@ -28,7 +27,7 @@ void StartDefaultTask(void* pvParameters);
 #define DEFAULT_TASK_SIZE 128
 
 //Default amount of waiting time in ticks
-#define WAIT_TIME 200
+#define DEFAULT_WAIT_TIME 200
 
 //Amount of waiting time in ticks after error
 #define ERROR_WAIT_TIME 500
