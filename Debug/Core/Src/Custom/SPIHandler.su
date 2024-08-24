@@ -1,2 +1,2 @@
-../Core/Src/Custom/SPIHandler.c:23:6:MX_SPI1_Init	8	static
-../Core/Src/Custom/SPIHandler.c:63:6:bSPITransmisionTest	16	static
+../Core/Src/Custom/SPIHandler.c:20:6:MX_SPI1_Init	8	static
+../Core/Src/Custom/SPIHandler.c:46:6:bSPITransmisionTest	16	static

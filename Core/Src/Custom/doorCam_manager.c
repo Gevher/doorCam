@@ -62,7 +62,6 @@ void vDoorCamProciessing(void) {
 		);
 	}
 
-
 	osKernelStart();
 
 }
@@ -73,28 +72,27 @@ void vSPITestTask(void *pvParameters) {
 	uint32_t iQueueValue;
 
 	for (;;) {
-		//xStatus = xQueueReceive(vProxTrigQueue, &iQueueValue, DEFAULT_WAIT_TIME);
+		xStatus = xQueueReceive(vProxTrigQueue, &iQueueValue, DEFAULT_WAIT_TIME);
 
-//		if(xStatus != pdPASS){
-//			vErrorLEDOn();
-//			vTaskDelay(ERROR_WAIT_TIME);
-//		}
-//		else{
-//			if(bSPITransmisionTest()){
-//					if(bLEDGetState()){
-//						vLEDOff();
-//					}
-//					else if (!bLEDGetState()){
-//						vLEDOn();
-//					}
-//					vTaskDelay(DEFAULT_WAIT_TIME);
-//				}
-//				else{
-//					//vErrorLEDChangeState();
-//					vTaskDelay(ERROR_WAIT_TIME);
-//				}
-//			vErrorLEDOff();
-//		}
+		if(xStatus != pdPASS){
+			vTaskDelay(ERROR_WAIT_TIME);
+		}
+		else{
+
+			if(bSPITransmisionTest()){
+					if(bLEDGetState()){
+						vLEDOff();
+					}
+					else if (!bLEDGetState()){
+						vLEDOn();
+					}
+					vTaskDelay(DEFAULT_WAIT_TIME);
+				}
+				else{
+					vErrorLEDOn();
+					vTaskDelay(ERROR_WAIT_TIME);
+				}
+		}
 	}
 
 }
@@ -111,7 +109,6 @@ void vProxSensMeasureTask(void *pvParameters) {
 		xStatus = xQueueSendToBack(vProxTrigQueue, &iMockupTrigger, 0);
 
 		if (xStatus == pdPASS) {
-			vLEDOn();
 			if (bErrorLEDGetState()) {
 				vErrorLEDOff();
 				vTaskDelay(ERROR_WAIT_TIME);
@@ -120,7 +117,6 @@ void vProxSensMeasureTask(void *pvParameters) {
 		}
 		vErrorLEDOn();
 		vTaskDelay(DEFAULT_WAIT_TIME);
-
 	}
 }
 

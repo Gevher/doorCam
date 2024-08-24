@@ -40,7 +40,6 @@ uint8_t vProxSensMeasure(void) {
 	if (iMachineState == SENSOR_STARTING && bEchoGetState()
 			&& bTrigGetState()) {
 		vTrigChangeState();
-		//vLEDOn();
 		iMachineState = SENSOR_MEASURE_IN_PROGRESS;
 	} else if (iMachineState == SENSOR_MEASURE_IN_PROGRESS) {
 		if (bEchoGetState()) {

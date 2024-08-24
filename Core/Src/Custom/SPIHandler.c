@@ -41,7 +41,8 @@ void MX_SPI1_Init(void) {
 
 /*SPI transition test, returns true if HAL_OK(0x00U), returns false if HAL_ERROR    = 0x01U,
  HAL_BUSY     = 0x02U,
- HAL_TIMEOUT  = 0x03U,*/
+ HAL_TIMEOUT  = 0x03U,
+ TODO:Prepare ESP32S3 microcontroller and test communication*/
 bool bSPITransmisionTest(void) {
 
 	//Transition test
@@ -51,6 +52,7 @@ bool bSPITransmisionTest(void) {
 
 	bTransmitionState = HAL_SPI_Transmit(&hspi1, &iDummyData, SIZE_OF_PACKAGE, DEFAULT_TIMEOUT);
 
-	return bTransmitionState;
+	/*Returning negation of bTransmitionState since for HAL_SPI_Transmit HALL_OK = 0x00U*/
+	return !bTransmitionState;
 
 }
