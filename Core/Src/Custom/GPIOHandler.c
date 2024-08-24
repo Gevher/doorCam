@@ -58,21 +58,21 @@ void MX_GPIO_Init(void)
 
 /*Turns on build-in LED state*/
 void vLEDOn(void) {
-		HAL_GPIO_WritePin(LED_PIN_GPIO_Port, LED_PIN, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(LED_PIN_GPIO_Port, LED_PIN, GPIO_PIN_SET);
 }
 /*Turns off build-in LED state*/
 void vLEDOff(void) {
-		HAL_GPIO_WritePin(LED_PIN_GPIO_Port, LED_PIN, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(LED_PIN_GPIO_Port, LED_PIN, GPIO_PIN_RESET);
 }
 
 /*Turns on build-in LED state*/
 void vErrorLEDOn(void) {
-		HAL_GPIO_WritePin(LED2_PIN_GPIO_Port, LED2_PIN, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(LED2_PIN_GPIO_Port, LED2_PIN, GPIO_PIN_SET);
 }
 
 /*Turns off build-in LED state*/
 void vErrorLEDOff(void) {
-		HAL_GPIO_WritePin(LED2_PIN_GPIO_Port, LED2_PIN, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(LED2_PIN_GPIO_Port, LED2_PIN, GPIO_PIN_RESET);
 
 }
 
